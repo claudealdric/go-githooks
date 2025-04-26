@@ -3,6 +3,11 @@
 # Exit immediately if a command exits with a non-zero status
 set -e
 
+if [ ! -d ".git" ]; then
+    echo "Error: This script must be run in the root of a Git repository."
+    exit 1
+fi
+
 # Check if brew is installed and install it if not
 if ! command -v brew &> /dev/null
 then
