@@ -1,0 +1,10 @@
+version: '2'
+linters:
+  default: standard
+formatters:
+  enable:
+    - gofumpt
+    - golines
+    - gci
+issues:
+  fix: true
