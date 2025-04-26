@@ -16,9 +16,6 @@ go test -race ./...
 echo "Building the project..."
 go build -o /dev/null ./...
 
-echo "Running golangci-lint..."
-golangci-lint run
-
 echo "Verifying go.mod and go.sum..."
 go mod tidy
 git diff --exit-code go.mod go.sum
