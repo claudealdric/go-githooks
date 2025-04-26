@@ -22,23 +22,11 @@ then
 	brew install golangci-lint
 fi
 
-# Check for the .githooks directory and create it if it doesn't exist
-if [ ! -d ".githooks" ]; then
-	echo "Creating .githooks directory..."
-	mkdir .githooks
-fi
-
-git config core.hooksPath .githooks
-
 # Install the pre-commit hook
 echo "Installing pre-commit hook..."
-curl -fsSL https://raw.githubusercontent.com/claudealdric/go-githooks/refs/heads/main/pre-commit -o .githooks/pre-commit
+git submodule add --force https://github.com/claudealdric/go-githooks.git .githooks
+git config core.hooksPath .githooks
 chmod +x .githooks/pre-commit
-echo "Installation successful!"
-
-# Install the pre-push hook
-echo "Installing pre-push hook..."
-curl -fsSL https://raw.githubusercontent.com/claudealdric/go-githooks/refs/heads/main/pre-push -o .githooks/pre-push
 chmod +x .githooks/pre-push
 echo "Installation successful!"
 
@@ -49,3 +37,4 @@ if [ ! -f ".golangci.yml" ]; then
 fi
 
 exit 0
+
