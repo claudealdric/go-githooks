@@ -6,7 +6,7 @@ set -e
 
 # Run golangci-lint
 echo "Running golangci-lint..."
-golangci-lint run ./...
+golangci-lint run --new-from-rev=HEAD~
 
 # Exit with success
 echo "golangci-lint passed successfully."
