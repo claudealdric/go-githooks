@@ -7,7 +7,18 @@ set -e
 # Run golangci-lint
 echo "Running golangci-lint..."
 golangci-lint run --new-from-rev=HEAD~
-
-# Exit with success
 echo "golangci-lint passed successfully."
+
+# Run golangci-lint fmt on staged files
+echo "Formatting staged files with golangci-lint fmt..."
+STAGED_FILES=$(git diff --name-only --cached -- '*.go')
+
+if [ -n "$STAGED_FILES" ]; then
+    echo "$STAGED_FILES" | xargs golangci-lint fmt
+    echo "$STAGED_FILES" | xargs git add
+    echo "Formatted files have been added back to the staging area."
+else
+    echo "No staged Go files to format."
+fi
+
 exit 0
