@@ -28,11 +28,18 @@ if [ ! -d ".githooks" ]; then
 	mkdir .githooks
 fi
 
+git config core.hooksPath .githooks
+
 # Install the pre-commit hook
 echo "Installing pre-commit hook..."
 curl -fsSL https://raw.githubusercontent.com/claudealdric/go-githooks/refs/heads/main/pre-commit -o .githooks/pre-commit
 chmod +x .githooks/pre-commit
-git config core.hooksPath .githooks
+echo "Installation successful!"
+
+# Install the pre-push hook
+echo "Installing pre-push hook..."
+curl -fsSL https://raw.githubusercontent.com/claudealdric/go-githooks/refs/heads/main/pre-push -o .githooks/pre-push
+chmod +x .githooks/pre-push
 echo "Installation successful!"
 
 # Copy the golangci-lint config file to the root of the repository
