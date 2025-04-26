@@ -33,6 +33,12 @@ echo "Installing pre-commit hook..."
 curl -fsSL https://raw.githubusercontent.com/claudealdric/go-githooks/refs/heads/main/pre-commit -o .githooks/pre-commit
 chmod +x .githooks/pre-commit
 git config core.hooksPath .githooks
-
 echo "Installation successful!"
+
+# Copy the golangci-lint config file to the root of the repository
+if [ ! -f ".golangci.yml" ]; then
+	echo "Copying golangci-lint config file..."
+	curl -fsSL https://raw.githubusercontent.com/claudealdric/go-githooks/refs/heads/main/.golangci.yml -o .golangci.yml
+fi
+
 exit 0
