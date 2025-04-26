@@ -1,0 +1,13 @@
+#!/bin/bash
+# pre-commit hook to run golangci-lint
+
+# Exit immediately if a command exits with a non-zero status
+set -e
+
+# Run golangci-lint
+echo "Running golangci-lint..."
+golangci-lint run ./...
+
+# Exit with success
+echo "golangci-lint passed successfully."
+exit 0
