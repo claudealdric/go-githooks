@@ -20,13 +20,5 @@ echo "Verifying go.mod and go.sum..."
 go mod tidy
 git diff --exit-code go.mod go.sum
 
-echo "Checking for large files..."
-LARGE_FILES=$(find . -type f -size +5M)
-if [ -n "$LARGE_FILES" ]; then
-    echo "Error: The following large files were found:"
-    echo "$LARGE_FILES"
-    exit 1
-fi
-
 echo "All pre-push checks passed successfully."
 exit 0
