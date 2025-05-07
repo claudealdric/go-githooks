@@ -27,8 +27,6 @@ remote repository. It performs the following checks:
 - **Build the Project**: Ensures the project builds successfully.
 - **Verify Dependencies**: Ensures `go.mod` and `go.sum` are clean and
   up-to-date.
-- **Check for Large Files**: Prevents accidentally pushing large files (e.g.,
-  binaries or logs).
 
 ## Installation
 
@@ -65,7 +63,6 @@ ensures that:
 
 - The codebase passes all tests and builds successfully.
 - Dependencies are clean and up-to-date.
-- No large files are accidentally pushed.
 
 ## Configuration
 
