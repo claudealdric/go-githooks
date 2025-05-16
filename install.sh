@@ -22,8 +22,8 @@ then
 	brew install golangci-lint
 fi
 
-# Install the pre-commit hook
-echo "Installing pre-commit hook..."
+# Install the Git hooks
+echo "Installing Git hooks..."
 git submodule add --force https://github.com/claudealdric/go-githooks.git .githooks
 git config core.hooksPath .githooks
 chmod +x .githooks/pre-commit
@@ -34,12 +34,14 @@ echo "Installation successful!"
 if [ ! -f ".golangci.yml" ]; then
 	echo "Copying golangci-lint config file..."
 	curl -fsSL https://raw.githubusercontent.com/claudealdric/go-githooks/refs/heads/main/.golangci.yml -o .golangci.yml
+	echo "Copied .golangci.yml into the root directory"
 fi
 
 # Copy the Makefile to the root of the repository if it doesn't already exist
 if [ ! -f "Makefile" ]; then
 	echo "Copying Makefile..."
 	curl -fsSL https://raw.githubusercontent.com/claudealdric/go-githooks/refs/heads/main/Makefile -o Makefile
+	echo "Copied Makefile into the root directory"
 fi
 
 exit 0
