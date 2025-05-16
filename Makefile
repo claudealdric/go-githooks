@@ -2,7 +2,7 @@ SERVICE_NAME := $(shell go list -m | sed 's/.*\///' | sed 's/-go$$//')
 
 .PHONY: run
 run:
-	go run ./cmd/$(SERVICE_NAME)/main.go
+	APP_CONFIG_DIR=$PWD go run ./cmd/$(SERVICE_NAME)/main.go
 
 .PHONY: build
 build:
