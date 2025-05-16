@@ -40,11 +40,12 @@ curl -fsSL https://raw.githubusercontent.com/claudealdric/go-githooks/main/insta
 
 1. Installs `Homebrew` (if not already installed).
 2. Installs `golangci-lint` using Homebrew.
-3. Creates a `.githooks` directory in your repository (if it doesn't exist).
+3. Adds the hooks as a Git submodule in the `.githooks` directory.
 4. Configures Git to use the `.githooks` directory for hooks.
 5. Installs the pre-commit and pre-push hooks.
 6. Copies the `golangci-lint` configuration file (`.golangci.yml`) to the root
    of your repository (if it doesn't exist).
+7. Copies the `Makefile` to the root of your repository (if it doesn't exist).
 
 ## Usage
 
