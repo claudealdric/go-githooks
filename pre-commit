@@ -6,7 +6,7 @@ set -e
 
 # Run golangci-lint
 echo "Running golangci-lint..."
-golangci-lint run --new-from-rev=HEAD~
+golangci-lint run --new
 echo "golangci-lint passed successfully."
 
 # Run golangci-lint fmt on staged files
