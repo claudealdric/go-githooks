@@ -36,5 +36,10 @@ if [ ! -f ".golangci.yml" ]; then
 	curl -fsSL https://raw.githubusercontent.com/claudealdric/go-githooks/refs/heads/main/.golangci.yml -o .golangci.yml
 fi
 
-exit 0
+# Copy the Makefile to the root of the repository if it doesn't already exist
+if [ ! -f "Makefile" ]; then
+	echo "Copying Makefile..."
+	curl -fsSL https://raw.githubusercontent.com/claudealdric/go-githooks/refs/heads/main/Makefile -o Makefile
+fi
 
+exit 0
