@@ -10,15 +10,25 @@ golangci-lint run --new-from-rev=HEAD~
 echo "golangci-lint passed successfully."
 
 # Run golangci-lint fmt on staged files
-echo "Formatting staged files with golangci-lint fmt..."
+echo "Checking formatting of staged files with golangci-lint fmt..."
 STAGED_FILES=$(git diff --name-only --cached --diff-filter=ACMR -- '*.go' | grep -v '^vendor/' || true)
 
-if [ -n "$STAGED_FILES" ]; then
-    echo "$STAGED_FILES" | xargs golangci-lint fmt
-    echo "$STAGED_FILES" | xargs git add
-    echo "Formatted files have been added back to the staging area."
-else
-    echo "No staged Go files to format."
+if [ -z "$STAGED_FILES" ]; then
+    echo "No staged Go files to check for formatting."
+    exit 0
 fi
 
-exit 0
+UNFORMATTED_FILES=$(echo "$STAGED_FILES" | xargs golangci-lint fmt --diff > /dev/null 2>&1 || echo "$STAGED_FILES")
+if [ -z "$UNFORMATTED_FILES" ]; then
+    echo "All staged files are properly formatted."
+    exit 0
+fi
+
+echo "The following files need to be formatted before committing:"
+echo "$UNFORMATTED_FILES" | while read -r file; do
+    echo "- $file"
+done
+echo ""
+echo "Please run the following command to fix the formatting:"
+echo "  golangci-lint fmt <file1> <file2> ..."
+exit 1
