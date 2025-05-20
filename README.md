@@ -65,6 +65,42 @@ ensures that:
 - The codebase passes all tests and builds successfully.
 - Dependencies are clean and up-to-date.
 
+### Bash Run Script (load-env-vars-and-run.sh)
+
+The `load-env-vars-and-run.sh` script is a utility to load environment variables and execute the Go application. It is particularly useful for setting up secrets and configuration before running the application.
+
+#### Instructions
+
+1. Open the `load-env-vars-and-run.sh` script.
+2. Replace the placeholder values enclosed in angle brackets (`<>`) with actual values. For example:
+
+   ```bash
+   KEYVAULT_NAME="my-secret-keyvault"
+   export DATABASE_PASSWORD=$(az keyvault secret show --vault-name $KEYVAULT_NAME --name postgres-password --query value -o tsv)
+   ```
+
+3. Ensure the script has executable permissions:
+
+   ```bash
+   chmod +x load-env-vars-and-run.sh
+   ```
+
+4. Run the script to load environment variables and start the application:
+
+   ```bash
+   ./load-env-vars-and-run.sh
+   ```
+
+#### Key Features
+
+- **Environment Variable Setup**: Loads secrets from Azure Key Vault and exports them as environment variables.
+- **Application Execution**: Runs the Go application with the environment variables set.
+
+#### Customization
+
+- Modify the `KEYVAULT_NAME` and secret keys to match your project's requirements.
+- Add additional environment variables or commands as needed.
+
 ## Configuration
 
 ### `.golangci.yml`
