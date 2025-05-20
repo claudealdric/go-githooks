@@ -46,6 +46,8 @@ curl -fsSL https://raw.githubusercontent.com/claudealdric/go-githooks/main/insta
 6. Copies the `golangci-lint` configuration file (`.golangci.yml`) to the root
    of your repository (if it doesn't exist).
 7. Copies the `Makefile` to the root of your repository (if it doesn't exist).
+8. Copies the `load-env-vars-and-run.sh` script to the root of your repository
+   (if it doesn't exist).
 
 ## Usage
 

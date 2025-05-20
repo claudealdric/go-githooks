@@ -44,4 +44,11 @@ if [ ! -f "Makefile" ]; then
 	echo "Copied Makefile into the root directory"
 fi
 
+# Copy load-env-vars-and-run.sh to the root of the repository if it doesn't already exist
+if [ ! -f "load-env-vars-and-run.sh" ]; then
+	echo "Copying run script..."
+	curl -fsSL https://raw.githubusercontent.com/claudealdric/go-githooks/refs/heads/main/load-env-vars-and-run.sh -o load-env-vars-and-run.sh
+	echo "Copied run script into the root directory"
+fi
+
 exit 0
