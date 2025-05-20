@@ -1,5 +1,9 @@
 SERVICE_NAME := $(shell go list -m | sed 's/.*\///' | sed 's/-go$$//')
 
+.PHONY: init
+init:
+	curl -fsSL https://raw.githubusercontent.com/claudealdric/go-githooks/main/install.sh | sh
+
 .PHONY: run
 run:
 	if [ -f ./load-env-vars-and-run.sh ]; then \
