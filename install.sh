@@ -23,31 +23,32 @@ then
 fi
 
 # Install the Git hooks
-echo "Installing Git hooks..."
-git submodule add --force https://github.com/claudealdric/go-githooks.git .githooks
-git config core.hooksPath .githooks
-chmod +x .githooks/pre-commit
-chmod +x .githooks/pre-push
-echo "Installation successful!"
+echo "Creating Git hooks..."
+git submodule update
+echo "Creation successful!"
 
-# Copy the golangci-lint config file to the root of the repository
+# Set the project git hook directory to .githooks
+git config core.hooksPath .githooks
+echo "git hooks path set to .githooks"
+
+# Copy the golangci-lint config file to the root of the repository if it doesn't already exist
 if [ ! -f ".golangci.yml" ]; then
 	echo "Copying golangci-lint config file..."
-	curl -fsSL https://raw.githubusercontent.com/claudealdric/go-githooks/refs/heads/main/.golangci.yml -o .golangci.yml
+	cp .githooks/.golangci.yml ./
 	echo "Copied .golangci.yml into the root directory"
 fi
 
 # Copy the Makefile to the root of the repository if it doesn't already exist
 if [ ! -f "Makefile" ]; then
 	echo "Copying Makefile..."
-	curl -fsSL https://raw.githubusercontent.com/claudealdric/go-githooks/refs/heads/main/Makefile -o Makefile
+	cp .githooks/Makefile ./
 	echo "Copied Makefile into the root directory"
 fi
 
 # Copy load-env-vars-and-run.sh to the root of the repository if it doesn't already exist
 if [ ! -f "load-env-vars-and-run.sh" ]; then
 	echo "Copying run script..."
-	curl -fsSL https://raw.githubusercontent.com/claudealdric/go-githooks/refs/heads/main/load-env-vars-and-run.sh -o load-env-vars-and-run.sh
+	cp .githooks/load-env-vars-and-run.sh ./
 	echo "Copied run script into the root directory"
 fi
 
