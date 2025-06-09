@@ -6,5 +6,8 @@ formatters:
     - gofumpt
     - golines
     - gci
+  exclusions:
+    paths:
+      - "vendor/*"
 issues:
   fix: true
